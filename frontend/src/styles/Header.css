@@ -1,0 +1,42 @@
+.header {
+    border-bottom: solid 1px black;
+    height: 120px;
+    width: 100%;
+   
+    background: linear-gradient(to right, white, 1%, white, red);
+     
+}
+
+
+
+
+.imagemenu {
+    font-size: 44px;
+    color:red;
+   
+    margin-left:100px;
+    margin-top:20px;
+    
+}
+
+.flexbox {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+
+.register {
+    margin-right:100px;
+    margin-top:10px;
+   
+    
+}
+
+.onglet {
+    padding-bottom: 10px; 
+    color:black;
+    font-size: 20px;
+    text-decoration: none;
+}
+
