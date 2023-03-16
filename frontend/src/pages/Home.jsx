@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from '../components/Header'
+import Navbar from '../components/Navbar'
 import '../styles/Home.css'
 
 
@@ -10,6 +11,7 @@ import '../styles/Home.css'
       <Header/>
       <body>
 <div className='flexboxHome'>
+  <Navbar/>
      <h1 className='Publications'>publications</h1>
      <div className='BodyDroite'>
      <h2 className='Amis'>Amis</h2>

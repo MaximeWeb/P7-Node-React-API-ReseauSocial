@@ -9,13 +9,13 @@ import '../styles/Header.css'
     <nav className='header'>
         
 <div className='flexbox'>
-  <div>
-    <Link to="/"><div className='imagemenu'>Groupomania</div></Link>
-</div> 
-   <div className='register'> 
+  
+   <div className='imagemenu'>Groupomania</div>
+
+  
     
-    <Link to="/profil"><div className='onglet'>Profil</div></Link>
-    </div>
+    <Link to="/"><div className='onglet'>Déconnexion</div></Link>
+    
 </div>
 </nav>
   )

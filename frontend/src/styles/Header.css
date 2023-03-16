@@ -3,7 +3,7 @@
     height: 60px;
     width: 100%;
    
-    background: linear-gradient(to right, white, 1%, white, red);
+    background-color:whitesmoke
      
 }
 
@@ -11,9 +11,9 @@
 
 
 .imagemenu {
-    font-size: 24px;
+    font-size: 28px;
     color:red;
-   
+   margin-top:10px;
     margin-left:20px;
     
     
@@ -33,10 +33,9 @@
     
 }
 
-.onglet {
-    padding-bottom: 10px; 
-    color:black;
-    font-size: 20px;
-    text-decoration: none;
-}
 
+.onglet {
+    font-size:18px;
+    color:black;
+    margin-top:8px;
+}
