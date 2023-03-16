@@ -1,49 +1,29 @@
 body {
     margin:0px;
-    
-    
-   
-    
-    
-   
 }
-
-
 .flexboxHome {
     display: flex;
     justify-content:  space-around;
     margin-left: 300px;
-    
-    
 }
-
-/*.BodyDroite {
-
-}*/
-
 .Publications {
     border: 1px solid black;
     border-radius: 10px;
     height: 1200px;
     width: 600px;
-    background-color: whitesmoke;
-   
+    background-color: whitesmoke; 
 }
-
 .Amis {
-border: 1px solid black;
-border-radius: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
     height: 400px;
     width: 250px;
     background-color: whitesmoke;
-
 }
-
 .Suggestions {
     border: 1px solid black;
     border-radius: 10px;
     height: 600px;
     width: 250px;
     background-color: whitesmoke;
-
 }

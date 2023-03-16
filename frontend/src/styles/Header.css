@@ -2,21 +2,14 @@
     border-bottom: solid 1px black;
     height: 60px;
     width: 100%;
-   
     background-color:whitesmoke
-     
 }
-
-
-
 
 .imagemenu {
     font-size: 28px;
     color:red;
    margin-top:10px;
-    margin-left:20px;
-    
-    
+    margin-left:20px;     
 }
 
 .flexbox {
@@ -24,15 +17,6 @@
     justify-content: space-between;
     
 }
-
-
-.register {
-    margin-right:100px;
-    margin-top:10px;
-   
-    
-}
-
 
 .onglet {
     font-size:18px;
