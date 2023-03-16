@@ -1,6 +1,6 @@
 .header {
     border-bottom: solid 1px black;
-    height: 120px;
+    height: 60px;
     width: 100%;
    
     background: linear-gradient(to right, white, 1%, white, red);
@@ -11,11 +11,11 @@
 
 
 .imagemenu {
-    font-size: 44px;
+    font-size: 24px;
     color:red;
    
-    margin-left:100px;
-    margin-top:20px;
+    margin-left:20px;
+    
     
 }
 

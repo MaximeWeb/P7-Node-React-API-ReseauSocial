@@ -1,0 +1,28 @@
+.BlocForm {
+    border-radius: 10px;
+     width: 350px;
+     height: 150px;
+     margin: auto;
+     margin-top:60px;
+     background-color: #FD7171;
+     
+ }
+ 
+ .formulaire {
+     display: flex;
+     flex-direction: column;
+     text-align: right;
+     padding-top:30px;
+     margin-right: 40px;
+   
+ }
+ 
+ .button {
+    margin:auto;
+    margin-top:20px;
+     width: 80px;
+ }
+ 
+ label {
+     padding-bottom:10px
+ }

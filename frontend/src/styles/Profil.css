@@ -1,11 +1,12 @@
 .ProfilBloc {
    
-    border: 1px solid black;
+   
     background-color: whitesmoke;
     border-radius: 10px;
     height: 400px;
     width: 800px;
     margin:auto;
     margin-top:50px;
+    padding-top:10px;
     
 }
