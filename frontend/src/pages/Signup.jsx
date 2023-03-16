@@ -4,19 +4,18 @@ import Form from '../components/Formsignup'
 import { Link } from 'react-router-dom'
 import '../styles/Profil.css'
 
-const Profil = () => {
+const Signup = () => {
   return (
     <div>
     <Header/>
    <div className='ProfilBloc'>
-    <Link to="/signup"><div className='onglet'>S'inscrire</div></Link>
-    <Link to="/login"><div className='onglet'>Se connecter</div></Link>
-    <Form />
-  
+   <Link to="/login"><div className='onglet'>Vous avez deja un compte ?</div></Link>
+   <Link to="/profil"><div className='onglet'>Retour au profil</div></Link>
+  <Form />
   </div>
 </div>
     
   )
 }
 
-export default Profil
+export default Signup

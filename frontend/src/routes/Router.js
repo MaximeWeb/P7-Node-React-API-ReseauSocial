@@ -2,8 +2,8 @@ import {Routes, Route} from 'react-router-dom'
 import Home from '../pages/Home'
 import Profil from '../pages/Profil'
 import NotFound from '../pages/NotFound'
-import Login from '../components/Formlogin'
-import Signup from '../components/Formsignup'
+import Login from '../pages/Login'
+import Signup from '../pages/Signup'
 
 
 const Router = () => {
