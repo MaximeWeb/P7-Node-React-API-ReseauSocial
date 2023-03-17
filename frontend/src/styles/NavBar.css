@@ -1,4 +1,21 @@
 .NavBar {
     display: flex;
     flex-direction: column;
+    height: 150px;
+    width: 60px;
+    background-color: whitesmoke;
+    text-align: center;
+    padding-top:50px;
+    border-radius: 30%;
 }
+.icon {
+    color:red;
+    font-size:30px;
+     margin-bottom:20px;
+}
+
+.icon:hover {
+    
+    border-left: 4px solid red;
+}
+

@@ -9,12 +9,16 @@ const Profil = () => {
   return (
     <div>
     <Header/>
-    <div className='flexbox'>
+    
+    <div className='box'>
+      <div className='navbar'>
     <NavBar />
+    </div>
    <div className='ProfilBloc'>
     <Link to="/signup"><div className='onglet'>S'inscrire</div></Link>
     <Link to="/login"><div className='onglet'>Se connecter</div></Link>
     <Form />
+    
   
   </div>
   </div>

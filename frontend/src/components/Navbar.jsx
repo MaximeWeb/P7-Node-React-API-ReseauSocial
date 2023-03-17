@@ -16,8 +16,8 @@ import '../styles/NavBar.css'
         
 
   <div className='NavBar'>
-   <Link to="/"><FontAwesomeIcon icon={faHome} /></Link>
-    <Link to="/Profil"><FontAwesomeIcon icon={faUser} /></Link>
+   <Link className='icon' to="/"><FontAwesomeIcon icon={faHome} /></Link>
+    <Link className='icon' to="/Profil"><FontAwesomeIcon icon={faUser} /></Link>
     </div>
 
   )

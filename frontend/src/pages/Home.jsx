@@ -11,7 +11,9 @@ import '../styles/Home.css'
       <Header/>
       <body>
 <div className='flexboxHome'>
+  <div className='navbar'>
   <Navbar/>
+  </div>
      <h1 className='Publications'>publications</h1>
      <div className='BodyDroite'>
      <h2 className='Amis'>Amis</h2>

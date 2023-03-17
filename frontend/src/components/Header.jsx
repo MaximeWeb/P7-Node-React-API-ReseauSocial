@@ -8,7 +8,7 @@ import '../styles/Header.css'
   return (
     <nav className='header'>
         
-<div className='flexbox'>
+    <div className='flexbox'>
   
    <div className='imagemenu'>Groupomania</div>
 
