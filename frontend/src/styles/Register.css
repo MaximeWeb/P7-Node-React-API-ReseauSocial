@@ -1,8 +1,46 @@
-.blocregister {
+body {
     background-color: whitesmoke;
+}
+
+.boxlogin {
+    display: flex;
+   justify-content: center;
+   margin-top:150px;
+}
+
+h1 {
+   
+    color:red;
+    font-size: 50px;
+    font-family:'Times New Roman', Times, serif
+}
+h2 {
+   
+    width: 400px;
+    padding-right: 120px;
+    font-family:'Times New Roman', Times, serif
+}
+
+
+.blocregister {
+    box-shadow: 1px 1px 1px 1px gray;
     border-radius: 10px;
-    height: 400px;
-    width: 800px;
-     margin:auto;
-    margin-top:100px;
+    background-color: white;
+    border-radius: 10px;
+    height: 350px;
+    width: 450px;
+    padding-top:10px;
+    background-image: url(../images/login.jfif);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.switchlogin {
+    background-color: red;
+    padding:10px 20px 10px 20px;
+    border-radius: 10px;
+   margin-left:30px;
+   color:white;
+   font-style: bold;
 }

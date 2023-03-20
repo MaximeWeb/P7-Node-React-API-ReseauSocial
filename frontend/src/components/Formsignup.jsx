@@ -4,25 +4,25 @@ import '../styles/Form.css'
 
 
 
-const Form = () => {
+const Formsignup = () => {
 return (
  
 
   <div className='BlocForm'>
 <form className='formulaire'>
 <label>
-    Pseudo : 
-    <input type="text" name="password" />
+   
+    <input type="text" name="password" placeholder="Pseudo" />
  </label>
 <label>
-    Email :
-    <input type="email" name="email" />
+   
+    <input type="email" name="email" placeholder="Adresse E-mail" />
   </label>
   <label>
-    Mot de passe : 
-    <input type="text" name="password" />
+    
+    <input type="text" name="password" placeholder="Password"/>
  </label>
-  <input className='button' type="submit" value="Envoyer" />
+  <input className='button' type="submit" value="S'inscrire" />
 </form>
 </div>
 
@@ -30,4 +30,4 @@ return (
 )
 
 }
- export default Form
+ export default Formsignup

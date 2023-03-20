@@ -1,17 +1,21 @@
+
 .NavBar {
     display: flex;
     flex-direction: column;
     height: 150px;
     width: 60px;
-    background-color: whitesmoke;
+    background-color: white;
     text-align: center;
     padding-top:50px;
     border-radius: 30%;
+    border:1px solid red;
+   
+    
 }
 .icon {
     color:red;
     font-size:30px;
-     margin-bottom:20px;
+    margin-bottom:20px;
 }
 
 .icon:hover {

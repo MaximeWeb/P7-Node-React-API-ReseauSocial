@@ -6,36 +6,39 @@ body {
     display: flex;
     justify-content:  space-around;
     margin-left: 250px;
+    margin-top:100px;
    
 }
 .Publications {
-    border: 1px solid black;
+    box-shadow: 1px 1px 1px 1px salmon;
     border-radius: 10px;
-    height: 1200px;
+    height: 400px;
     width: 600px;
-    background-color: whitesmoke; 
-    margin-top:100px;
+    background-color: white; 
+    margin-bottom:50px;
+   
 }
 .Amis {
-    border: 1px solid black;
+    box-shadow: 1px 1px 1px 1px salmon;
     border-radius: 10px;
     height: 400px;
     width: 250px;
-    background-color: whitesmoke;
-    margin-top:100px;
+    background-color: white;
+   
 }
 .Suggestions {
-    border: 1px solid black;
+    box-shadow: 1px 2px 1px 1px salmon;
     border-radius: 10px;
-    height: 600px;
+    height: 400px;
     width: 250px;
-    background-color: whitesmoke;
+    background-color: white;
     margin-top:50px;
 }
+
 .navbar {
     position: fixed;
-    left:18%;
-    top:12%;
-    margin-top:40px;
+    left:15%;
+    top:13%;
+    
    
 }

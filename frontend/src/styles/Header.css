@@ -2,10 +2,9 @@
     border-bottom: solid 1px black;
     height: 60px;
     width: 100%;
-    background-color:whitesmoke;
+    background-color:white;
     position:fixed;
     top:0px;
-   
 }
 
 .imagemenu {
@@ -22,7 +21,8 @@
 }
 
 .onglet {
-    font-size:18px;
+    font-size:28px;
     color:black;
-    margin-top:8px;
+    margin-top:13px;
+    margin-right:20px;
 }

@@ -14,10 +14,13 @@ import '../styles/Home.css'
   <div className='navbar'>
   <Navbar/>
   </div>
-     <h1 className='Publications'>publications</h1>
+  <div>
+     <div className='Publications'>publications</div>
+     <div className='Publications'>publications</div>
+</div> 
      <div className='BodyDroite'>
-     <h2 className='Amis'>Amis</h2>
-     <h3 className='Suggestions'>Suggestions</h3>
+     <div className='Amis'>Amis</div>
+     <div className='Suggestions'>Suggestions</div>
      </div>
 </div>
 </body>

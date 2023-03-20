@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { faSignOut } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../styles/Header.css'
 
 
@@ -14,7 +16,7 @@ import '../styles/Header.css'
 
   
     
-    <Link to="/"><div className='onglet'>Déconnexion</div></Link>
+    <Link to="/"><div className='onglet'><FontAwesomeIcon icon={faSignOut} /></div></Link>
     
 </div>
 </nav>

@@ -2,20 +2,22 @@ import React from 'react'
 
 import '../styles/Form.css'
 
-const Form = () => {
+const FormLogin = () => {
+
+  
 return (
 
   <div className='BlocForm'>
 <form className='formulaire'>
 <label>
-    Email :
-    <input type="email" name="email" />
+   
+    <input type="email" name="email" placeholder="Adresse E-mail" />
   </label>
   <label>
-    Mot de passe : 
-    <input type="text" name="password" />
+   
+    <input type="text" name="password" placeholder="Mot de passe" />
  </label>
-  <input className='button' type="submit" value="Envoyer" />
+  <input className='button' type="submit" value="Se connecter"  />
 </form>
 </div>
 
@@ -23,4 +25,4 @@ return (
 )
 
 }
- export default Form
+ export default FormLogin
