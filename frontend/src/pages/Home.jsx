@@ -1,6 +1,8 @@
 import React from 'react'
 import Header from '../components/Header'
 import Navbar from '../components/Navbar'
+import Post from '../components/Post'
+import PostUsers from '../components/Postusers'
 import '../styles/Home.css'
 
 
@@ -15,8 +17,8 @@ import '../styles/Home.css'
   <Navbar/>
   </div>
   <div>
-     <div className='Publications'>publications</div>
-     <div className='Publications'>publications</div>
+     <div className='publications'><Post/></div>
+     <div className='postpublic'><PostUsers/></div>
 </div> 
      <div className='BodyDroite'>
      <div className='Amis'>Amis</div>

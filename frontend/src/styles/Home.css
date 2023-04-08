@@ -1,6 +1,8 @@
 body {
     margin:0px;
     
+   
+    
 }
 .flexboxHome {
     display: flex;
@@ -9,17 +11,28 @@ body {
     margin-top:100px;
    
 }
-.Publications {
-    box-shadow: 1px 1px 1px 1px salmon;
+
+.publications {
+    box-shadow: 1px 1px 1px 1px #FFD7D7;
+    border-radius: 10px;
+    height: 200px;
+    width: 600px;
+    background-color: white; 
+    margin-bottom:50px;
+}
+.postpublic {
+  
+    box-shadow: 1px 1px 1px 1px #FFD7D7;
     border-radius: 10px;
     height: 400px;
     width: 600px;
     background-color: white; 
     margin-bottom:50px;
+    
    
 }
 .Amis {
-    box-shadow: 1px 1px 1px 1px salmon;
+    box-shadow: 1px 1px 1px 1px #FFD7D7;
     border-radius: 10px;
     height: 400px;
     width: 250px;
@@ -27,7 +40,7 @@ body {
    
 }
 .Suggestions {
-    box-shadow: 1px 2px 1px 1px salmon;
+    box-shadow: 1px 1px 1px 1px #FFD7D7;
     border-radius: 10px;
     height: 400px;
     width: 250px;

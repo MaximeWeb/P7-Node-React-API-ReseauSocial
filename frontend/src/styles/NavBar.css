@@ -8,18 +8,18 @@
     text-align: center;
     padding-top:50px;
     border-radius: 30%;
-    border:1px solid red;
+    border:1px solid #FD2D01;
    
     
 }
 .icon {
-    color:red;
+    color:#FD2D01;
     font-size:30px;
     margin-bottom:20px;
 }
 
 .icon:hover {
     
-    border-left: 4px solid red;
+    border-left: 4px solid #FD2D01;
 }
 
