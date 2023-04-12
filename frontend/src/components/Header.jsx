@@ -6,7 +6,17 @@ import '../styles/Header.css'
 
 
 
+
  const Header = () => {
+   const logout =  () => {
+   localStorage.removeItem('profil');
+
+   };
+   
+   
+   
+    
+
   return (
     <nav className='header'>
         
@@ -16,11 +26,15 @@ import '../styles/Header.css'
 
   
     
-    <Link to="/"><div className='onglet'><FontAwesomeIcon icon={faSignOut} /></div></Link>
+    <Link to="/" onClick={logout}><div className='onglet'><FontAwesomeIcon icon={faSignOut} /></div></Link>
     
 </div>
 </nav>
   )
+
+  
 }
+
+
 
 export default Header
