@@ -1,15 +1,20 @@
-import React, { useState } from "react";
-//import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 
 const Post = () => {
   
+  const [user, setUser] = useState([])
   const [message, setPost] = useState("");
   
   
 
- 
+ useEffect(() => {
+const user = JSON.parse(localStorage.getItem('user'));
+if (user) {
+  setUser(user);
+}
+ }, []);
  
 
   const handlePost = (e) => {
@@ -18,9 +23,9 @@ const Post = () => {
     
   
 
-  axios.post( `http://localhost:5000/api/post/`, {message})
+  axios.post( `http://localhost:5000/api/post/`, {message}, {user})
   .then(res => {
-    localStorage.getItem('profil', JSON.stringify(res.data));
+    localStorage.setItem('profil', JSON.stringify(res.data));
     
    
   })
