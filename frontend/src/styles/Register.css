@@ -5,7 +5,7 @@ body {
 }
 
 
-.boxlogin {
+.boxregister {
     display: flex;
    justify-content: center;
    margin-top:150px;
@@ -24,8 +24,48 @@ h2 {
 
 }
 
+.switchlogin {
+   
+    background-color: #FD2D01;
+    padding:8px 20px 10px 20px;
+    border-radius: 10px;
+   margin-left:30px;
+   position: relative;
+    bottom:60px;
+   color:white;
+   font-style: bold;
+}
 
-.blocregister {
+/* formulaire  */
+
+.Bloclogin input {
+    width: 400px;
+    height: 50px;
+    margin-left:20px;
+    padding-left:10px;
+    border-radius: 10px;
+    font-family: 'Lato';
+    margin-bottom:10px;
+    
+}
+
+.Bloclogin {
+    box-shadow: 1px 1px 1px 1px gray;
+    border-radius: 10px;
+    background-color: white;
+    border-radius: 10px;
+    height: 360px;
+    width: 450px;
+    padding-top:10px;
+    background-image: url(../images/login.jfif);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+ 
+}
+
+
+.Blocsignup {
     box-shadow: 1px 1px 1px 1px gray;
     border-radius: 10px;
     background-color: white;
@@ -40,12 +80,27 @@ h2 {
 }
 
 
-
-.switchlogin {
-    background-color: #FD2D01;
-    padding:8px 20px 10px 20px;
+.Blocsignup input {
+    width: 400px;
+    height: 50px;
+    margin-left:20px;
+    padding-left:10px;
     border-radius: 10px;
-   margin-left:30px;
-   color:white;
-   font-style: bold;
+    font-family: 'Lato';
+    margin-bottom:10px;
 }
+ 
+ .formulaire {
+     display: flex;
+     flex-direction: column;
+     padding-top:30px;
+     margin-bottom:0px;
+    
+ }
+ .button {
+    
+     background-color: #FFD7D7;
+     color:#4E5166;
+     font-size:20px;
+ }
+ 

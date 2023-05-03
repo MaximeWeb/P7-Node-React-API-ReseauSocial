@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import '../styles/Form.css'
+import '../styles/Register.css'
 
 
 
@@ -33,7 +33,7 @@ const FormLogin = () => {
   
 return (
 
-  <div className='BlocForm'>
+  <div className='Bloclogin'>
 <form  className='formulaire' onSubmit={handleLogin}  method='post'>
 <label htmlFor="email"></label>
    
@@ -51,6 +51,7 @@ return (
  <br/>
   <input className='button' type="submit" value="Se connecter"  />
 </form>
+
 </div>
 
 

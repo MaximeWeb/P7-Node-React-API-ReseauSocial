@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from '../components/Header'
 import Navbar from '../components/Navbar'
-import Post from '../components/Post'
+import { Link } from 'react-router-dom'
 import PostUsers from '../components/Postusers'
 import '../styles/Home.css'
 
@@ -11,21 +11,21 @@ import '../styles/Home.css'
   return (
     <div>
       <Header/>
-      <body>
+      
 <div className='flexboxHome'>
   <div className='navbar'>
   <Navbar/>
   </div>
   <div>
-     <div className='publications'><Post/></div>
-     <div className='postpublic'><PostUsers/></div>
+  <Link className='linkpost' to="/post">Poster un message</Link>
+    <PostUsers/>
 </div> 
      <div className='BodyDroite'>
      <div className='Amis'>Amis</div>
      <div className='Suggestions'>Suggestions</div>
      </div>
 </div>
-</body>
+
     </div>
     
     

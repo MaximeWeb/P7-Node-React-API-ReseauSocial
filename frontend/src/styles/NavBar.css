@@ -2,11 +2,11 @@
 .NavBar {
     display: flex;
     flex-direction: column;
-    height: 150px;
+    height: 200px;
     width: 60px;
     background-color: white;
     text-align: center;
-    padding-top:50px;
+    padding-top:30px;
     border-radius: 30%;
     border:1px solid #FD2D01;
    
@@ -15,11 +15,14 @@
 .icon {
     color:#FD2D01;
     font-size:30px;
-    margin-bottom:20px;
+    margin-bottom:30px;
+    transform: scale(1);
+    transition: transform 400ms;
 }
 
 .icon:hover {
     
-    border-left: 4px solid #FD2D01;
+   
+    transform: scale(1.45);
 }
 

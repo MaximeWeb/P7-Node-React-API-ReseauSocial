@@ -3,6 +3,7 @@ import Home from '../pages/Home'
 import Profil from '../pages/Profil'
 import NotFound from '../pages/NotFound'
 import Login from '../pages/Login'
+import Post from '../components/Post'
 
 
 
@@ -12,6 +13,7 @@ const Router = () => {
         <Route path="/" element={<Login/>} />
          <Route path="/profil" element={<Profil/>} />
         <Route path="/accueil" element={<Home/>} />
+        <Route path="/post" element={<Post/>} />
         <Route path="*" element={<NotFound/>} />  
     </Routes>
   )

@@ -15,12 +15,12 @@ const Login = () => {
 const [isLogin, setIsLogin] = useState(true);
 
   return (
-<div className='boxlogin'>
+<div className='boxregister'>
   <div>
     <h1>Groupomania </h1>
     <h2>Avec Groupomania, partagez et restez en contact avec votre entourage.</h2>
   </div>
-  <div className='blocregister'>
+  <div>
    {isLogin ? (<FormLogin/>) : (<Formsignup/>)}
    <span className='switchlogin' style={{cursor:"pointer"}} onClick={()=>setIsLogin(!isLogin)}> {isLogin ? "Créer un nouveau compte" : "Vous avez deja un compte ? Connectez-vous"}     </span>
  </div>

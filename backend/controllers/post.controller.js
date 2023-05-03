@@ -9,17 +9,23 @@ module.exports.readPost = ( req, res) => {
  })
 };
 
-module.exports.createPost = async ( req, res) => {
-    const newPost = new PostModel( req.body );
-   
-    try {
-        const post = await newPost.save();
-        return res.status(201).json(post);
-}  catch (err) {
-    return res.status(400).send(err);
-}
+module.exports.createPost = (req, res, next) => {
+    PostModel.create({
+        message: JSON.parse(req.body.message).message,
+        picture: `${req.protocol}://${req.get("host")}/images/${
+            req.file.filename
+          }`,
+          userId : req.auth.userId,
+           likes : 0,
+          dislikes : 0,
+          usersLiked : [],
+         usersDisliked : [],
 
-};
+    })
+   
+      .then(() => res.status(201).json({ message: "Post postée !" }))
+      .catch((error) => res.status(400).json({ error: error })); 
+  };
 
 module.exports.updatePost = ( req, res) => {
     if (!ObjectId.isValid(req.params.id))

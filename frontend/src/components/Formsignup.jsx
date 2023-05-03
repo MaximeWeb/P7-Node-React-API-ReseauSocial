@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import '../styles/Form.css'
+import '../styles/Register.css'
 
 
 
@@ -40,7 +40,7 @@ const Formsignup = () => {
 return (
  
 
-  <div className='BlocForm'>
+  <div className='Blocsignup'>
 <form  className='formulaire' onSubmit={handleSignup}  method='post'>
 <label htmlFor="pseudo"></label>
    
