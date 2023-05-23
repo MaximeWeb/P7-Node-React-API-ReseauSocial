@@ -50,6 +50,7 @@ body {
     background-color:#FD2D01 ;
 }
 
+/* POST USERS */
 
 .BlocPosts{
      margin-top:50px;
@@ -57,17 +58,55 @@ body {
 }
 
 .blocposthome {
-    
     box-shadow: 1px 1px 1px 1px grey;
-    border-radius: 10px;
-    height: 400px;
+    border-radius: 10px; 
     width: 600px;
     background-color: #FFD7D7; 
     margin-bottom:30px;  
 }
 
 .imagepost {
-   max-height: 180px;
-   max-width: 580px;
+   width: 100%;
+   object-fit: cover;
+}
+.messageposthome {
+    margin-left:20px;
+    color:black;
+}
+.deletepost {
+   margin-right:30px;
+    border:none;
+    background: none;
+    cursor: pointer;
+    color:#FD2D01;
+    font-size:20px;
+    transform: scale(1);
+    transition: transform 400ms;
+}
+.deletepost:hover {
+    transform: scale(1.30);
+}
+
+.likepost {
+    margin-left:30px;
+    border:none;
+    cursor: pointer;
+    color:#FD2D01;
+    font-size: 25px;
+   position: relative;
+   bottom:10px;
    
 }
+.likepost:hover {
+    color:blue;
+}
+
+.footerpost {
+    height: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom:8px;
+}
+
+

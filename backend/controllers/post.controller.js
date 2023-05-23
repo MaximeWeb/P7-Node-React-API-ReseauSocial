@@ -1,6 +1,7 @@
 const PostModel = require('../models/post.model');
 const UserModel = require('../models/user.model');
 const ObjectId = require('mongoose').Types.ObjectId;
+const fs = require('fs');
 
 module.exports.readPost = ( req, res) => {
  PostModel.find((err, docs) => {
@@ -27,125 +28,83 @@ module.exports.createPost = (req, res, next) => {
       .catch((error) => res.status(400).json({ error: error })); 
   };
 
-module.exports.updatePost = ( req, res) => {
-    if (!ObjectId.isValid(req.params.id))
-    return res.status(400).send('ID unknown : ' + req.params.id);
-
-    const updateRecord = {
-        message: req.body.message
-    }
+ module.exports.updatePost = (req, res, next) => {
     
-    PostModel.findByIdAndUpdate(
-        req.params.id,
-        { $set: updateRecord },
-        { new : true},
-        (err, docs) => {
-            if (!err) res.send(docs);
-            else console.log("Update error: " + err);
-        }
-    )
+    const PostObject = req.file ? // Fichier présent
+        {
+            ...JSON.parse(req.body.post),
+            imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        } : {...req.body }; // Sans fichier*
+
+    PostModel.findOne({ _id: req.params.id })
+        .then(post => {
+            if (post.userId == req.auth.userId) {
+                PostModel.updateOne({ _id: req.params.id }, {...PostObject, _id: req.params.id })
+                    .then(() => res.status(200).json({ message: 'Post modifiée !' }))
+                    .catch(error => res.status(400).json({ error }));
+            } else {
+                res.status(403).json({ message: 'acces refusé' })
+            }
+
+
+        })
+
 };
+    
+   
 
 module.exports.deletePost = ( req, res) => {
-    if (!ObjectId.isValid(req.params.id))
-    return res.status(400).send("ID unknow : " + req.params.id);
-
-    PostModel.findByIdAndRemove(req.params.id, (err, docs) => {
-        if (!err)res.send(docs);
-        else console.log("Delete error : " + err)
-    });
-};
-
-module.exports.likePost = async (req, res) => {
-    if (!ObjectId.isValid(req.params.id))
-    return res.status(400).send("ID unknow : " + req.params.id);
-
-    try {
-        await PostModel.findByIdAndUpdate(
-        req.params.id,
-        {
-           $addToSet: {likers: req.body.userId}
-        },
-        { new : true},
-        (err, docs) => {
-            if (err) return res.status(400).send(err)
-        }
-        );
-        await UserModel.findByIdAndUpdate(
-            req.body.id,
-            {
-                $addToSet: {likes: req.params.id}
-            },
-            { new: true},
-            (err, docs) => {
-                if (!err) res.send(docs);
-                else return res.status(400).send(err);
+    PostModel.findOne({ _id: req.params.id })
+        .then(post => {
+            if (post.userId == req.auth.userId) {
+                const filename = post.picture.split('/images/')[1];
+                fs.unlink(`images/${filename}`, () => {
+                    PostModel.deleteOne({ _id: req.params.id })
+                        .then(() => { res.status(200).json({ message: 'Objet supprimé !' }) })
+                        .catch(error => res.status(401).json({ error }));
+                });
+            } else {
+                res.status(403).json({ message: 'acces refusé' })
             }
-        );
-    } catch (err) {
-        return res.status(400).send(err)
-    }
-};
-
-module.exports.like = async (req, res) => {
-const idPost = req.params.id;
-
-const {UserId} = req.body;
-
-
-try {
-    const post = await PostModel.findByIdAndUpdate(idPost)
-    if (post.likes.includes(UserId)) {
-        await post.updateOne({$pull: {likes:UserId}})
-        res.status(200).json("J'aime pas le post")
-    }
-    else {
-        await post.updateOne({$push: {likes:UserId}})
-       
-        .then((poste) => console.log("reussit" + poste))
-        .catch(err => console.log("error" + err)) 
-
-        res.status(200).json("J'aime le post")
-    }
-    
-    
-    
-} catch (err) {
-    res.status(500).json(err)
-}
+        })
+        .catch(error => {
+            res.status(500).json({ error });
+        });
 };
 
 
-module.exports.unlikePost = async (req, res) => {
-    if (!ObjectId.isValid(req.params.id))
-    return res.status(400).send("ID unknow : " + req.params.id);
 
-    try {
-        await PostModel.findByIdAndUpdate(
-        req.params.id,
-        {
-           $pull: {likers: req.body.id}
-        },
-        { new : true},
-        (err, docs) => {
-            if (err) return res.status(400).send(err)
-        }
-        );
-        await UserModel.findByIdAndUpdate(
-            req.body.id,
-            {
-                $pull: {likes: req.params.id}
-            },
-            { new: true},
-            (err, docs) => {
-                if (!err) res.send(docs);
-                else return res.status(400).send(err);
-            }
-        );
-    } catch (err) {
-        return res.status(400).send(err)
+exports.like = (req, res, next) => {
+    console.log('like or dislike a post');
+    if (req.body.like === 1) {
+        console.log('like a post');
+        PostModel.updateOne({ _id: req.params.id }, { $inc: { likes: req.body.like++ }, $push: { usersLiked: req.body.userId } })
+            .then(post => res.status(200).json({ message: 'Like ajouté !' }))
+            .catch(error => {
+                console.log(error);
+                res.status(400).json({ error })
+            }) // disliquer un post
+    } else if (req.body.like === -1) {
+        console.log('dislike a post');
+        PostModel.updateOne({ _id: req.params.id }, { $inc: { dislikes: (req.body.like++) * -1 }, $push: { usersDisliked: req.body.userId } })
+            .then(post => res.status(200).json({ message: 'Dislike ajouté !' }))
+            .catch(error => res.status(400).json({ error }))
+    } else { //Aucun des deux
+        PostModel.findOne({ _id: req.params.id })
+            .then(post => {
+                if (post.usersLiked.includes(req.body.userId)) {
+                    PostModel.updateOne({ _id: req.params.id }, { $pull: { usersLiked: req.body.userId }, $inc: { likes: -1 } })
+                        .then(post => { res.status(200).json({ message: 'Like supprimé !' }) })
+                        .catch(error => res.status(400).json({ error }))
+                } else if (post.usersDisliked.includes(req.body.userId)) {
+                    PostModel.updateOne({ _id: req.params.id }, { $pull: { usersDisliked: req.body.userId }, $inc: { dislikes: -1 } })
+                        .then(post => { res.status(200).json({ message: 'Dislike supprimé !' }) })
+                        .catch(error => res.status(400).json({ error }))
+                }
+            })
+            .catch(error => res.status(400).json({ error }))
     }
-}; 
+};
 
  module.exports.commentPost = ( req, res) => {
   /*  if (!ObjectId.isValid(req.params.id))

@@ -2,14 +2,18 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { faSignOut } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useAuthState } from '../atoms'
 import '../styles/Header.css'
 
 
 
 
+
  const Header = () => {
+  const [connectState, setConnectState] = useAuthState()
    const logout =  () => {
    localStorage.removeItem('profil');
+   setConnectState({loggedIn: false, token: "" })
 
    };
    

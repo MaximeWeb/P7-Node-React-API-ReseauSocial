@@ -1,24 +1,27 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useAuthState } from '../atoms'
 import '../styles/Register.css'
 
 
 
-const FormLogin = () => {
+const FormLogin = ({url}) => {
  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [connectState, setConnectState] = useAuthState()
 
   const handleLogin = (e) => {
     e.preventDefault();
     const emailError = document.querySelector(".email.error");
     const passwordError = document.querySelector(".password.error");
 
-    axios.post('http://localhost:5000/api/user/login', {email,password})
+    axios.post(url+'user/login', {email,password})
     .then(res => {
       localStorage.setItem("profil",JSON.stringify(res.data)) 
+      setConnectState({loggedIn: true, token: res.data.token})
       navigate("/accueil");
     })
     .catch (err => { 

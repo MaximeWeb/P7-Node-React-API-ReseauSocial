@@ -11,7 +11,7 @@ import '../styles/Register.css'
 
 
 
-const Login = () => {
+const Login = ({url}) => {
 const [isLogin, setIsLogin] = useState(true);
 
   return (
@@ -21,7 +21,7 @@ const [isLogin, setIsLogin] = useState(true);
     <h2>Avec Groupomania, partagez et restez en contact avec votre entourage.</h2>
   </div>
   <div>
-   {isLogin ? (<FormLogin/>) : (<Formsignup/>)}
+   {isLogin ? (<FormLogin url= {url}/>) : (<Formsignup url= {url}/>)}
    <span className='switchlogin' style={{cursor:"pointer"}} onClick={()=>setIsLogin(!isLogin)}> {isLogin ? "Créer un nouveau compte" : "Vous avez deja un compte ? Connectez-vous"}     </span>
  </div>
 

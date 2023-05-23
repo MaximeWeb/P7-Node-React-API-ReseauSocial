@@ -1,102 +1,140 @@
-import React, { useState } from "react";
-import Header from '../components/Header'
-import Navbar from '../components/Navbar'
-import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faImage } from "@fortawesome/free-solid-svg-icons";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import '../styles/Post.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faThumbsUp, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import '../styles/Home.css'
 
-
-const Post = () => {
-  const navigate = useNavigate();
+function Post({ post,url,token,deleted,like }) {
   
+  const [posts, setPosts] = useState([]);
+  const [usernames, setUsernames] = useState({});
   const profil = JSON.parse(localStorage.getItem("profil"))
-  const [message, setMessage] = useState('');
-  const [image, setImage] = useState('');
-  const [file, setFile] = useState();
+  const config = {Authorization: `Bearer ${profil.token}`}
+  const [user, setUser] = useState({pseudo:""})
   
 
-
-  const handlePost = (e) => {
-    e.preventDefault();
-//* Préparation des données pour l'envoie au backend *// 
-     let formData = new FormData()
-     formData.append("message",JSON.stringify({ message: message }))
-     formData.append("image",file)
-     console.log(file)
-
-     
-//* Configuration des données envoyé *//
-/*const config = {Authorization: `Bearer ${profil.token}`}*/
-
- 
- axios.post('http://localhost:5000/api/post', formData, 
- {
-  headers: {Authorization: `Bearer ${profil.token}`}
- }
- )
-  .then((res) => {
-   console.log(res.data)
-   navigate("/accueil");
-  }).catch ((err) => {
-    console.log(err)
-  }) 
-
-};
-
-function newImage (e) {
   
-  setImage(URL.createObjectURL(e.target.files[0]) );
-  setFile(e.target.files[0])
-}
+
+ /* useEffect(() => {
+    async function fetch() {
+      
+    }
+    axios
+      .get("http://localhost:5000/api/post", {
+        headers: { Authorization: `Bearer ${profil.token}` }
+      })
+      .then(response => {
+        setPosts(response.data);
+  
+        // Récupérer les IDs des utilisateurs dans les articles
+       const userIds = response.data.map(post => post.userId);
+  
+        // Faire une requête pour récupérer les détails des utilisateurs
+        axios
+          .get("http://localhost:5000/api/user", {
+            headers: { Authorization: `Bearer ${profil.token}` },
+            params: { userIds }
+          })
+          .then(usersResponse => {
+            const users = usersResponse.data;
+  
+            // Créer un objet avec les pseudos des utilisateurs associés aux IDs
+            const usernamesObj = users.reduce((obj, user) => {
+              obj[user._id] = user.pseudo;
+              return obj;
+            }, {});
+  
+            setUsernames(usernamesObj);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, ); */
 
 
-
-
-
-return   (
-  <div>
-  <Header/>
-
-  <div className='flexboxHome'>
-  <div className='navbar'>
-  <Navbar/>
-  </div>
-  <div>
-
-  <div className='blocpost'>
-
-    <div className="texttop">Créer une publication</div>
-
-<form  className='formulairepost'  onSubmit={handlePost}   method='post'>
+  useEffect(() => {
+  
+    async function fetchUser() {
+      axios
+      .get(url+"user/" + post.userId, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      .then((data) => setUser(data.data))
     
+    }
 
-<label htmlFor="Post"> </label>
-<textarea className="textpost" type="text"  name="message" id="message" placeholder="Poster un message" value={message} onChange={(e) => setMessage(e.target.value)}  required/>
+    fetchUser()
+  
+}, []);
 
-<div className="flexboximage">
-<div className="boximage"><p> Ajouter une image ?</p>
-<label htmlFor="file" title="Ajouter une image" className="label-file" ><FontAwesomeIcon icon={faImage} /></label>
-<input id="file" className="input-file" type="file" accept="image/png, image/jpg, image/jpeg"    onChange={newImage}/>
 
-</div>
+/*
+  const handleDeletePost = (_id) => {
+ 
+     
+      // Supprimer le post correspondant à l'ID passé en paramètre
+      axios.delete(`http://localhost:5000/api/post/${_id}`, {
+        headers: { Authorization: `Bearer ${profil.token}` },
+      }) 
+     
+        .then((response) => {
+         
+          console.log(response);
+        
+        })
+        .catch((error) => {
+          console.log(error);
+        }); 
+    
+  }; */
 
-  <img  className={(image) ? "newimage" : ""} alt="" src={image} /> 
-</div>
-            
-<div className="boxbutton">
-<input className="buttonpost"   type="submit" value="Envoyer"  />
-<Link className="retouraccueil" to="/accueil">Annuler</Link>
-</div>
+  const likeById  = (id) => {
+    like(id)
+   
+  }
 
-</form>
-</div>
-</div>
-</div>
-</div>
-)
+  const deleteById = (id) => {
+    deleted(id)
+      .then(() => {
+        // Suppression réussie, actualisation de la page
+        window.location.reload();
+      })
+      .catch((error) => {
+        // Gestion des erreurs
+        console.log(error);
+      });
+  }
 
+
+
+  return (
+    <div className="BlocPosts">
+   
+      <div className="blocposthome" >
+      
+      <p>Auteur : {user.pseudo}</p>
+      
+        
+        <p className="messageposthome">{post.message}</p>
+        <img className="imagepost" src={post.picture} alt={post.title} /><br/>
+      <div className="footerpost">
+      <button className="likepost" title="like this post" onClick={() => likeById(post._id)}>
+      <FontAwesomeIcon icon={faThumbsUp} />
+       </button>
+       {profil.userId === post.userId && ( // le boutton supprimer n'apprarait que sur ces propre posts
+       <button className="deletepost" title="Delete post" onClick={() => deleteById(post._id)}>
+       <FontAwesomeIcon icon={faTrashAlt} />
+        </button>
+       )} 
+       </div>
+      </div>
+    
+  </div>
+  ) 
 }
- export default Post
+
+export default Post;
