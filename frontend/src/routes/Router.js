@@ -3,19 +3,22 @@ import Home from '../pages/Home'
 import Profil from '../pages/Profil'
 import NotFound from '../pages/NotFound'
 import Login from '../pages/Login'
-import Post from '../components/AddPost'
+import Post from '../pages/AddPost'
+
+
 import { useAuthState } from '../atoms'
 
 
 
-const Router = ({url}) => {
-  const [connectState, setConnectState] = useAuthState()
+const Router = ({url,token}) => {
+  const [connectState] = useAuthState()
   return (
     <Routes>
-        <Route path="/" element={connectState.loggedIn ? <Navigate to= "../accueil" /> : <Login  url= {url}/> } />
-         <Route path="/profil" element={connectState.loggedIn ? <Profil url= {url}/> : <Navigate to= "../"/> } />
-        <Route path="/accueil" element={connectState.loggedIn ? <Home url= {url}/> : <Navigate to= "../"/> } />
-        <Route path="/ajouter-post" element={connectState.loggedIn ? <Post url= {url}/> : <Navigate to= "../"/> } /> 
+        <Route path="/" element={connectState.loggedIn ? <Navigate to= "../accueil" /> : <Login  url= {url} token={token}/> } />
+         <Route path="/profil" element={connectState.loggedIn ? <Profil url= {url} token={token}/> : <Navigate to= "../"/> } />
+        <Route path="/accueil" element={connectState.loggedIn ? <Home url= {url} token={token}/> : <Navigate to= "../"/> } />
+        <Route path="/ajouter-post" element={connectState.loggedIn ? <Post url= {url} token={token}/> : <Navigate to= "../"/> } /> 
+        <Route path="/update-post/:id" element={connectState.loggedIn ? <Post url= {url} token={token}/> : <Navigate to= "../"/> } /> 
         <Route path="*" element={<NotFound/>} />  
     </Routes>
   )

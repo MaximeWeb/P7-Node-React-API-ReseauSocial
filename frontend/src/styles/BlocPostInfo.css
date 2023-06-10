@@ -1,0 +1,96 @@
+body {
+    margin:0px;  
+}
+
+.Home{
+   margin-top: 20px;
+}
+.blocposthome {
+    box-shadow: 1px 1px 1px 1px grey;
+    border-radius: 10px; 
+    width: 600px;
+    background-color: #FFD7D7; 
+    margin:auto;
+    margin-bottom:30px;
+    
+}
+.Auteurflexbox {
+    display: flex;
+}
+.Imageprofilpost {
+    width: 40px;
+    height: 40px;
+    border:1px solid black;
+    border-top-left-radius: 10px;
+    margin-right: 10px;
+}
+.Username {
+    font-weight: bold;
+}
+.messageposthome {
+    margin-left:20px;
+    color:black;
+}
+.imagepost {
+   width: 100%;
+   object-fit: cover;
+}
+
+.footerpost {
+    height: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom:8px;
+}
+.likepostbutton {
+    margin-left:20px;
+    border:none;
+    background: none;
+    cursor: pointer;
+    color:#FD2D01;
+    font-size:25px;
+    transform: scale(1);
+    transition: transform 400ms;
+   
+}
+.likepostbutton:hover {
+    transform: scale(1.30);
+}
+
+.updatepostbutton {
+    margin-right:30px;
+    border:none;
+    background: none;
+    cursor: pointer;
+    color:#FD2D01;
+    font-size:25px;
+    transform: scale(1);
+    transition: transform 400ms;
+    margin-top:15px;
+   
+}
+
+.updatepostbutton:hover {
+    transform: scale(1.30);
+}
+
+
+.deletepostbutton {
+   margin-right:30px;
+    border:none;
+    background: none;
+    cursor: pointer;
+    color:#FD2D01;
+    font-size:20px;
+    transform: scale(1);
+    transition: transform 400ms;
+}
+.deletepostbutton:hover {
+    transform: scale(1.30);
+}
+
+
+
+
+

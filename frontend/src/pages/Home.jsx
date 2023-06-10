@@ -2,33 +2,55 @@ import React, { useEffect } from 'react'
 import Header from '../components/Header'
 import Navbar from '../components/Navbar'
 import { Link } from 'react-router-dom'
-import Post from '../components/Post'
+import BlocPostInfo from '../components/BlocPostInfo'
 import axios from "axios";
-import { useAuthState, usePostState } from '../atoms'
+import { usePostState } from '../atoms'
+import Swal from 'sweetalert2'
 import '../styles/Home.css'
 
+ const Home = ({url,token}) => {
 
-
- const Home = ({url}) => {
-
-  const [connectState, setConnectState] = useAuthState()
+ 
   const [postState, setPostState] = usePostState([])
-  const deleted = async (id) => {
-    console.log(id)
-    axios.delete(url+"post/"+ id , {
-      headers: { Authorization: `Bearer ${connectState.token}` },
-    }) 
-    .then((res) => console.log(res)) 
-    .catch((err) => console.log(err)) 
+  const deleted =  (id) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        console.log("test")
+      await axios.delete(url+"post/"+ id , {
+          headers: { Authorization: `Bearer ${token}` },
+        }) 
+        .then((res) => setPostState((current)=>
+                                    current.filter((postState) => postState._id !== id) ) ) 
+        .catch((err) => console.log(err))
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    })
   } 
+
+
   const like = async (id) => {
-    console.log(id)
-    axios.post(url+"post/"+ id , {
-      headers: { Authorization: `Bearer ${connectState.token}` },
-    }) 
-    .then((res) => console.log(res)) 
-    .catch((err) => console.log(err)) 
-  } 
+     axios.put(url + "post/like/" + id, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
+
+ 
+
+  
 
   
 
@@ -37,7 +59,7 @@ import '../styles/Home.css'
     async function fetchData() {
       axios
       .get(url+"post", {
-        headers: { Authorization: `Bearer ${connectState.token}` }
+        headers: { Authorization: `Bearer ${token}` }
       })
       .then((data) => setPostState(data.data))
     
@@ -50,26 +72,21 @@ import '../styles/Home.css'
 
   return (
    <div>
-      <Header/>
-      
-<div className='flexboxHome'>
-  <div className='navbar'>
+
+  <Header/>
   <Navbar/>
-  </div>
-  <div>
-  <Link className='linkpost' to="/ajouter-post">Poster un message</Link>
+  
+  <div className='BlocPostHome'>
+  <Link className='PosterMessage' to="/ajouter-post">Poster un message</Link>
   {postState.map(post => (
-     <Post key={post._id} post={post} url={url} token={connectState.token} like={like} deleted={deleted}/>
+     <BlocPostInfo key={post._id} post={post} url={url} token={token} like={like} deleted={deleted}  />
   ))}
    
 </div> 
-     <div className='BodyDroite'>
-     <div className='Amis'>Amis</div>
-     <div className='Suggestions'>Suggestions</div>
-     </div>
+   
 </div>
 
-    </div>
+    
     
     
   )

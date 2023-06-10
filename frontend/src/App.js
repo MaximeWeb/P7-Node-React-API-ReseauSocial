@@ -19,7 +19,7 @@ function App() {
   return (
     <div>
       
-          <Router url={url}/>
+          <Router url={url} token={connectState.token}/>
       
     </div>
   );

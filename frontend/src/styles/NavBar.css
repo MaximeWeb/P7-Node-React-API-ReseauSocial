@@ -9,6 +9,9 @@
     padding-top:30px;
     border-radius: 30%;
     border:1px solid #FD2D01;
+    position: fixed;
+    left:15%;
+    top:13%; 
    
     
 }

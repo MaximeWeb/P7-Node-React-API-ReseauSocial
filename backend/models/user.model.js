@@ -24,7 +24,7 @@ password: {
 
 picture : {
     type : String,
-    default: "./uploads/profil/random-user.png"
+    default: "https://cdn2.iconfinder.com/data/icons/random-outline-3/48/random_14-512.png"
     
 },
 

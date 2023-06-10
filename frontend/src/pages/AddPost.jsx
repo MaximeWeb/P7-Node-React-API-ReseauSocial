@@ -1,23 +1,45 @@
-import React, { useState } from "react";
-import Header from './Header'
-import Navbar from './Navbar'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import Header from '../components/Header'
+import Navbar from '../components/Navbar'
+import { Link, useParams } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faImage } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import '../styles/Post.css'
+import Swal from 'sweetalert2'
+import '../styles/AddPost.css'
 
 
-const AddPost = () => {
+const AddPost = ({url,token}) => {
+
   const navigate = useNavigate();
   
-  const profil = JSON.parse(localStorage.getItem("profil"))
   const [message, setMessage] = useState('');
   const [image, setImage] = useState('');
   const [file, setFile] = useState();
-  
+  const {id} = useParams();
+  const [isEditMode, setIsEditMode] = useState(false);
 
+  const fetchData = async () => {
+    axios
+    .get(url+"post/"+ id ,{
+      headers: { Authorization: `Bearer ${token}` }
+    })
+    .then((data) => {
+      setMessage(data.data.message);
+      setImage(data.data.picture);
+      setIsEditMode(true); // Si l'ID est présent, on est en mode édition
+
+    })
+    .catch((err) => console.log(err))
+    
+  }
+
+useEffect(() => {
+  if (id) {
+    fetchData()
+  }
+}, []);
 
   const handlePost = (e) => {
     e.preventDefault();
@@ -26,51 +48,78 @@ const AddPost = () => {
      formData.append("message",JSON.stringify({ message: message }))
      formData.append("image",file)
      console.log(file)
-
-     
+ 
 //* Configuration des données envoyé *//
 /*const config = {Authorization: `Bearer ${profil.token}`}*/
-
- 
  axios.post('http://localhost:5000/api/post', formData, 
  {
-  headers: {Authorization: `Bearer ${profil.token}`}
+  headers: {Authorization: `Bearer ${token}`}
  }
  )
   .then((res) => {
-   console.log(res.data)
+     Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Le Post a été ajouté avec succes ! ',
+      showConfirmButton: false,
+      timer: 1500
+    })
    navigate("/accueil");
   }).catch ((err) => {
     console.log(err)
   }) 
-
 };
 
 function newImage (e) {
-  
   setImage(URL.createObjectURL(e.target.files[0]) );
   setFile(e.target.files[0])
 }
 
 
+const EditPost = (e) => {
+  e.preventDefault();
+   let formData = new FormData()
+   formData.append("message",message)
+   if (file) {
+  formData.append("image", file);
+}
+   console.log(file)
+  
+axios.put(url+'post/'+ id, formData, 
+{
+headers: {Authorization: `Bearer ${token}`}
+}
+)
+.then((res) => {
+  Swal.fire({
+    position: 'top-end',
+    icon: 'success',
+    title: 'Le Post a été modifier avec succes ! ',
+    showConfirmButton: false,
+    timer: 1500
+  })
+ navigate("/accueil"); 
+}).catch ((err) => {
+  console.log(err)
+}) 
 
-
+};
 
 return   (
   <div>
   <Header/>
 
-  <div className='flexboxHome'>
-  <div className='navbar'>
+  
+  
   <Navbar/>
-  </div>
+  
   <div>
 
   <div className='blocpost'>
 
     <div className="texttop">Créer une publication</div>
 
-<form  className='formulairepost'  onSubmit={handlePost}   method='post'>
+<form  className='formulairepost'  onSubmit={(id) ? EditPost : handlePost}   method='post'>
     
 
 <label htmlFor="Post"> </label>
@@ -88,7 +137,12 @@ return   (
 </div>
             
 <div className="boxbutton">
-<input className="buttonpost"   type="submit" value="Envoyer"  />
+<input
+  className="buttonpost"
+  type="submit"
+  value={isEditMode ? "Modifier" : "Envoyer"}
+/>
+
 <Link className="retouraccueil" to="/accueil">Annuler</Link>
 </div>
 
@@ -96,7 +150,7 @@ return   (
 </div>
 </div>
 </div>
-</div>
+
 )
 
 }

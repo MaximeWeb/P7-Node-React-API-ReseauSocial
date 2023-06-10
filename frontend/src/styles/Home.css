@@ -1,112 +1,28 @@
 body {
     margin:0px;  
 }
-.flexboxHome {
-    display: flex;
-    justify-content:  space-around;
-    margin-left: 250px;
-    margin-top:100px; 
+
+.BlocPostHome {
+    margin-top:100px;
 }
-.postpublic {
-  
-    box-shadow: 1px 1px 1px 1px #FFD7D7;
-    border-radius: 10px;
-    height: 400px;
-    width: 600px;
-    background-color: white; 
-    margin-top:50px; 
-}
-.Amis {
-    box-shadow: 1px 1px 1px 1px #FFD7D7;
-    border-radius: 10px;
-    height: 400px;
-    width: 250px;
-    background-color: white;
-   
-}
-.Suggestions {
-    box-shadow: 1px 1px 1px 1px #FFD7D7;
-    border-radius: 10px;
-    height: 400px;
-    width: 250px;
-    background-color: white;
-    margin-top:50px;
-}
-.navbar {
-    position: fixed;
-    left:15%;
-    top:13%; 
-}
-.linkpost {
+
+.PosterMessage {
     padding:5px 10px 5px 10px ;
     border: 1px solid #FD2D01;
     color:#FD2D01;
     background-color: white;
     border-radius: 10px;
+    position: relative;
+    left:30%;
+    
+    
 }
 
-.linkpost:hover {
+.PosterMessage:hover {
     color:white;
     background-color:#FD2D01 ;
 }
 
-/* POST USERS */
 
-.BlocPosts{
-     margin-top:50px;
-     margin-left:50px;
-}
-
-.blocposthome {
-    box-shadow: 1px 1px 1px 1px grey;
-    border-radius: 10px; 
-    width: 600px;
-    background-color: #FFD7D7; 
-    margin-bottom:30px;  
-}
-
-.imagepost {
-   width: 100%;
-   object-fit: cover;
-}
-.messageposthome {
-    margin-left:20px;
-    color:black;
-}
-.deletepost {
-   margin-right:30px;
-    border:none;
-    background: none;
-    cursor: pointer;
-    color:#FD2D01;
-    font-size:20px;
-    transform: scale(1);
-    transition: transform 400ms;
-}
-.deletepost:hover {
-    transform: scale(1.30);
-}
-
-.likepost {
-    margin-left:30px;
-    border:none;
-    cursor: pointer;
-    color:#FD2D01;
-    font-size: 25px;
-   position: relative;
-   bottom:10px;
-   
-}
-.likepost:hover {
-    color:blue;
-}
-
-.footerpost {
-    height: 60px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding-bottom:8px;
-}
 
 

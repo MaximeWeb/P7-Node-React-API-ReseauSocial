@@ -20,7 +20,7 @@ import '../styles/NavBar.css'
     <Link className='icon' title="profil" to="/profil"><FontAwesomeIcon icon={faUser} /></Link>
     </div>
 
-  )
+  ) 
 }
 
 export default Navbar
