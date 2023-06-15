@@ -106,50 +106,35 @@ headers: {Authorization: `Bearer ${token}`}
 };
 
 return   (
-  <div>
+<div>
   <Header/>
-
-  
-  
   <Navbar/>
-  
   <div>
+     <div className='blocpost'>
+       <div className="texttop">Créer une publication</div>
+          <form  className='formulairepost'  onSubmit={(id) ? EditPost : handlePost}   method='post'>
+            <label htmlFor="Post"> </label>
+              <textarea className="textpost" type="text"  name="message" id="message" placeholder="Poster un message" value={message} onChange={(e) => setMessage(e.target.value)}  required/>
+                <div className="flexboximage">
+                 <div className="boximage">
+                    <p> Ajouter une image ?</p>
+                      <label htmlFor="file" title="Ajouter une image" className="label-file" ><FontAwesomeIcon icon={faImage} /></label>
+                        <input id="file" className="input-file" type="file" accept="image/png, image/jpg, image/jpeg"    onChange={newImage}/>
 
-  <div className='blocpost'>
-
-    <div className="texttop">Créer une publication</div>
-
-<form  className='formulairepost'  onSubmit={(id) ? EditPost : handlePost}   method='post'>
-    
-
-<label htmlFor="Post"> </label>
-<textarea className="textpost" type="text"  name="message" id="message" placeholder="Poster un message" value={message} onChange={(e) => setMessage(e.target.value)}  required/>
-
-<div className="flexboximage">
-<div className="boximage">
-  <p> Ajouter une image ?</p>
-<label htmlFor="file" title="Ajouter une image" className="label-file" ><FontAwesomeIcon icon={faImage} /></label>
-<input id="file" className="input-file" type="file" accept="image/png, image/jpg, image/jpeg"    onChange={newImage}/>
-
-</div>
-
-  <img  className={(image) ? "newimage" : ""} alt="" src={image} /> 
-</div>
-            
-<div className="boxbutton">
-<input
-  className="buttonpost"
-  type="submit"
-  value={isEditMode ? "Modifier" : "Envoyer"}
-/>
-
-<Link className="retouraccueil" to="/accueil">Annuler</Link>
-</div>
-
-</form>
-</div>
-</div>
-</div>
+                 </div>
+                <img  className={(image) ? "newimage" : ""} alt="" src={image} /> 
+                </div>
+                 <div className="boxbutton">
+                  <input
+                    className="buttonpost"
+                    type="submit"
+                    value={isEditMode ? "Modifier" : "Envoyer"} />
+                   <Link className="retouraccueil" to="/accueil">Annuler</Link>
+                 </div>
+         </form>
+      </div>
+   </div>
+ </div>
 
 )
 

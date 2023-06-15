@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faThumbsUp, faTrashAlt, } from "@fortawesome/free-solid-svg-icons";
 import '../styles/BlocPostInfo.css'
 
-function Post({ post,url,token,deleted,like,edit }) {
+function Post({ post,url,token,deleted,like }) {
 
   const profil = JSON.parse(localStorage.getItem("profil"))
   const [user, setUser] = useState({pseudo:""})

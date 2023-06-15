@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const authController = require('../controllers/auth.controller');
 const userController = require ('../controllers/user.controller');
+const multer = require('../middleware/multer-config');
 const auth = require('../middleware/auth');
 const { userValidationRules, validate, } = require('../middleware/validator')
 
@@ -10,12 +11,12 @@ router.post("/login", authController.signIn);
 router.get("/logout", authController.logout);
 
 // user display :'block',
-router.get('/',  userController.getAllUsers);
-router.get('/:id',  userController.userInfo);
-router.put('/:id',  userController.updateUser);
-router.delete('/:id',  userController.deleteUser);
-router.patch('/follow/:id',  userController.follow);
-router.patch('/unfollow/:id',  userController.unfollow);
+router.get('/',auth, userController.getAllUsers);
+router.get('/:id',auth, userController.userInfo);
+router.put('/:id',auth, multer,  userController.updateUser);
+router.delete('/:id',auth , userController.deleteUser);
+router.patch('/follow/:id',auth , userController.follow);
+router.patch('/unfollow/:id',auth ,  userController.unfollow);
 
 
 

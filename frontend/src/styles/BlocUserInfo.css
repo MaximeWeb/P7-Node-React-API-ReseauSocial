@@ -6,8 +6,6 @@ p {
 }
 .blocprofil {
     padding-top:50px;
-    display: flex;
-    justify-content: space-around;
     box-shadow: 1px 1px 1px 1px salmon;
     border-radius: 10px;
     height: 400px;
@@ -15,6 +13,25 @@ p {
     background-color: white; 
     margin:auto;
     margin-top:100px;
+}
+
+.blocprofilflex {
+    display: flex;
+    justify-content: space-around;
+}
+
+.blocprofilimage {
+    display: flex;
+    flex-direction: column;
+}
+
+.changeimage {
+    cursor: pointer;
+    transform: scale(1);
+    transition: transform 400ms;
+}
+.changeimage:hover {
+    transform: scale(1.45);
 }
 
 .imageprofil {

@@ -45,7 +45,7 @@ module.exports.createPost = (req, res, next) => {
     const PostObject = req.file ? // Fichier présent
     {
         ...req.body,
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        picture: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     } : {...req.body }; // Sans fichier*
 
     PostModel.findOne({ _id: req.params.id })
