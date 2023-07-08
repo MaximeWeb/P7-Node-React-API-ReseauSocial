@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 import { useNavigate } from "react-router-dom";
 import '../styles/BlocUserInfo.css';
 
-function UserInfo({ url, token }) {
+function BlocUserInfo({ url, token }) {
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({});
   const profilData = JSON.parse(localStorage.getItem('profil'));
@@ -87,33 +87,33 @@ function UserInfo({ url, token }) {
     <div className="blocprofil">
       <div className="blocprofilflex">
         <div>
-          <p>Pseudo : {userInfo.pseudo}</p>
-          <p>Email : {userInfo.email}</p>
+          <p className="fontbold">Pseudo :</p> {userInfo.pseudo}
+          <p className="fontbold">Email : </p>{userInfo.email}
           {editingBio ? (
             <div>
-              <p>A propos de moi :</p>
-              <textarea value={newBio} onChange={handleBioChange} />
+              <p className="fontbold">A propos de moi :</p>
+              <textarea className="areabio" value={newBio} onChange={handleBioChange} />
             </div>
           ) : (
-            <p>A propos de moi :<br/> {userInfo.bio}</p>
+            <div><p className="fontbold">A propos de moi :</p> {userInfo.bio}</div>
           )}
         </div>
         <div className="blocprofilimage">
           <img id="imageProfil" className="imageprofil" alt="" src={userInfo.picture} />
-          <label htmlFor="file" title="Modifier" className="changeimage"><p> Modifier image ?</p></label>
+          <label htmlFor="file" title="Modifier" className="changeimage"><p className="fontbold"> Modifier image ?</p></label>
           <input id="file" className="input-file" type="file" accept="image/png, image/jpg, image/jpeg" onChange={changeImage} />
         </div>
       </div>
       <div>
         {editingBio ? (
-          <button onClick={toggleEditBio}>Annuler</button>
+            <button className="buttonannule" onClick={toggleEditBio}>Annuler</button>
         ) : (
-          <button onClick={toggleEditBio}>Modifier la bio</button>
+          <button className="buttonupdatebio" onClick={toggleEditBio}>Modifier la bio</button>
         )}
       </div>
-      <input className="" type="submit" value="Modifier" onClick={EditProfil} />
+      <input className="buttonupdate" type="submit" value="Enregistrer" onClick={EditProfil} />
     </div>
   );
 }
 
-export default UserInfo;
+export default BlocUserInfo;

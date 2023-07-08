@@ -1,14 +1,8 @@
 import React from 'react'
-
 import FormLogin from '../components/Formlogin'
 import Formsignup from '../components/Formsignup'
 import { useState } from 'react'
-
 import '../styles/Register.css'
-
-
-
-
 
 
 const Login = ({url}) => {

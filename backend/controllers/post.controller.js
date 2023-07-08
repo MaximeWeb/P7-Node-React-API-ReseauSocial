@@ -23,17 +23,15 @@ module.exports.readOnePost = (req, res) => {
 };
 
 module.exports.createPost = (req, res, next) => {
+    const image = req.file ?  `${req.protocol}://${req.get("host")}/images/${
+        req.file.filename
+      }` : null
     PostModel.create({
         message: JSON.parse(req.body.message).message,
-        picture: `${req.protocol}://${req.get("host")}/images/${
-            req.file.filename
-          }`,
+        picture: image,
           userId : req.auth.userId,
-           likes : 0,
-          dislikes : 0,
-          usersLiked : [],
-         usersDisliked : [],
-
+           likes : [],
+    
     })
    
       .then(() => res.status(201).json({ message: "Post postée !" }))
@@ -89,7 +87,7 @@ module.exports.deletePost = ( req, res) => {
 // like/dislike a post
 module.exports.likePost = async (req, res) => {
     const id = req.params.id;
-    const { userId } = req.auth.userId;
+    const userId  = req.auth.userId;
     try {
       const post = await PostModel.findById(id);
       if (post.likes.includes(userId)) {

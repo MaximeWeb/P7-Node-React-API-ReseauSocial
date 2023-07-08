@@ -4,6 +4,9 @@ a {
 p {
     color:red;
 }
+.fontbold {
+    font-weight: bold;
+}
 .blocprofil {
     padding-top:50px;
     box-shadow: 1px 1px 1px 1px salmon;
@@ -17,7 +20,7 @@ p {
 
 .blocprofilflex {
     display: flex;
-    justify-content: space-around;
+    margin-left:10%;
 }
 
 .blocprofilimage {
@@ -39,3 +42,80 @@ p {
     height: 100px;
 }
 
+.buttonannule {
+    width: 120px;
+    height: 30px;
+    color:whitesmoke;
+    background-color:salmon ;
+    border: none;
+    cursor: pointer;
+    border-radius: 30px; 
+    position: relative;
+    top:50px;
+    left:30px
+}
+.buttonupdatebio {
+    width: 150px;
+    height: 40px;
+    color:whitesmoke;
+    background-color: salmon;
+    border: none;
+    cursor: pointer;
+    border-radius: 40px;
+    margin-left:40px;
+    margin-top:50px;
+}
+.areabio {
+    height: 100px;
+    width: 300px;
+    border: none;
+    box-shadow: 1px 1px 1px 1px salmon;
+    padding-top:10px;
+    padding-left:10px;
+    border-radius: 10px;
+}
+.buttonupdate {
+    width: 120px;
+    height: 30px;
+    color:whitesmoke;
+    background-color:salmon ;
+    border: none;
+    cursor: pointer;
+    border-radius: 30px;
+    float: right;
+    margin-right: 40px;
+    margin-top:20px;
+}
+
+
+.buttonannule:hover {
+    color:salmon;
+    background-color:whitesmoke ;
+}
+.buttonupdatebio:hover  {
+    color:salmon;
+    background-color:whitesmoke ;
+}
+.areabio:hover  {
+    color:salmon;
+    background-color:whitesmoke ;
+}
+.buttonupdate:hover  {
+    color:salmon;
+    background-color:whitesmoke ;
+}
+/******** User Info Page ***********/
+
+.ImageUserInfo {
+    position: relative;
+    left:300px;
+    bottom:200px;
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+  }
+  
+  .fontbold {
+      font-weight: bold;
+  } 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import Header from '../components/Header'
 import Navbar from '../components/Navbar'
 import { Link } from 'react-router-dom'
@@ -12,6 +12,9 @@ import '../styles/Home.css'
 
  
   const [postState, setPostState] = usePostState([])
+  const [userState, setUserState] = useState([]);
+  
+  
   const deleted =  (id) => {
     Swal.fire({
       title: 'Are you sure?',
@@ -41,18 +44,20 @@ import '../styles/Home.css'
 
 
   const like = async (id) => {
-     axios.put(url + "post/like/" + id, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+    try {
+      await axios.put(
+        url + "post/like/" + id,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      
+    } catch (error) {
+      console.log(error);
+    }
   };
 
- 
-
-  
-
-  
 
  useEffect(() => {
   
@@ -65,7 +70,18 @@ import '../styles/Home.css'
     
     }
 
+
     fetchData()
+
+    async function fetchUser() {
+     axios.get(url + "user" , {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+        .then((data) => setUserState(data.data))
+      
+      }
+
+    fetchUser();
   
 }, []);
 
@@ -75,15 +91,22 @@ import '../styles/Home.css'
 
   <Header/>
   <Navbar/>
-  
+  <div className='blocamis'>
+  <p>Membres Groupomania : </p> 
+  {userState.map(user => (
+   
+ <Link className='boxusers' to={`/user-info/${user._id}`}>
+  <img className="imageusers" src={user.picture} alt={user.title} /> 
+  <p key={user._id} className="nameusers">{user.pseudo}</p></Link>
+  ))}
+    </div>
   <div className='BlocPostHome'>
   <Link className='PosterMessage' to="/ajouter-post">Poster un message</Link>
   {postState.map(post => (
-     <BlocPostInfo key={post._id} post={post} url={url} token={token} like={like} deleted={deleted}  />
+     <BlocPostInfo key={post._id} post={post} url={url} token={token} like={like}  deleted={deleted}  />
   ))}
-   
+ 
 </div> 
-   
 </div>
 
     

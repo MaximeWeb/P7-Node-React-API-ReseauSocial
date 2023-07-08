@@ -22,6 +22,7 @@ body {
     height: 40px;
     border-top-left-radius: 10px;
     margin-right: 10px;
+    object-fit: cover;
 }
 .Username {
     font-weight: bold;
@@ -43,6 +44,7 @@ body {
     padding-bottom:8px;
 }
 .likepostbutton {
+    margin-top:15px;
     margin-left:20px;
     border:none;
     background: none;
@@ -53,10 +55,20 @@ body {
     transition: transform 400ms;
    
 }
+.likepostbutton.liked {
+    color: blue;
+  }
 .likepostbutton:hover {
     transform: scale(1.30);
 }
-
+.likecounter{
+    padding-left:10px;
+}
+.compteurlike {
+    color:gray;
+    margin-left:10px;
+   
+}
 .updatepostbutton {
     margin-right:30px;
     border:none;
@@ -88,7 +100,6 @@ body {
 .deletepostbutton:hover {
     transform: scale(1.30);
 }
-
 
 
 
