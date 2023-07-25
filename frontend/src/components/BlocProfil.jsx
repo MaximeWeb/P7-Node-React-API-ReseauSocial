@@ -100,7 +100,7 @@ function BlocUserInfo({ url, token }) {
         </div>
         <div className="blocprofilimage">
           <img id="imageProfil" className="imageprofil" alt="" src={userInfo.picture} />
-          <label htmlFor="file" title="Modifier" className="changeimage"><p className="fontbold"> Modifier image ?</p></label>
+          <label htmlFor="file" title="Modifier" ><p className="changeimage"> Modifier image ?</p></label>
           <input id="file" className="input-file" type="file" accept="image/png, image/jpg, image/jpeg" onChange={changeImage} />
         </div>
       </div>

@@ -1,17 +1,21 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import Router from './routes/Router'
+import axios from "axios";
 import { useAuthState } from './atoms'
 
 
 function App() {
   const [connectState, setConnectState] = useAuthState()
   const url = "http://localhost:5000/api/"
+  const data = JSON.parse(localStorage.getItem("profil"))
   useEffect(() => {
-   const data = JSON.parse(localStorage.getItem("profil"))
+   
+
    if (data) {
-    setConnectState({loggedIn: true, token: data.token})
+      setConnectState({loggedIn: true})
+console.log(data.role)
    } else {
-    setConnectState({loggedIn: false, token: "" })
+    setConnectState({loggedIn: false})
    }
 
   }, []);
@@ -19,7 +23,7 @@ function App() {
   return (
     <div>
       
-          <Router url={url} token={connectState.token}/>
+          <Router url={url} token={data?.token} role={data?.role} />
       
     </div>
   );

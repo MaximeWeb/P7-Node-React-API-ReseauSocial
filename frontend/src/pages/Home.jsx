@@ -8,7 +8,7 @@ import { usePostState } from '../atoms'
 import Swal from 'sweetalert2'
 import '../styles/Home.css'
 
- const Home = ({url,token}) => {
+ const Home = ({url,token,role}) => {
 
  
   const [postState, setPostState] = usePostState([])
@@ -26,7 +26,7 @@ import '../styles/Home.css'
       confirmButtonText: 'Yes, delete it!'
     }).then(async (result) => {
       if (result.isConfirmed) {
-        console.log("test")
+       
       await axios.delete(url+"post/"+ id , {
           headers: { Authorization: `Bearer ${token}` },
         }) 
@@ -95,15 +95,15 @@ import '../styles/Home.css'
   <p>Membres Groupomania : </p> 
   {userState.map(user => (
    
- <Link className='boxusers' to={`/user-info/${user._id}`}>
+ <Link key={user._id} className='boxusers' to={`/user-info/${user._id}`}>
   <img className="imageusers" src={user.picture} alt={user.title} /> 
-  <p key={user._id} className="nameusers">{user.pseudo}</p></Link>
+  <p  className="nameusers">{user.pseudo}</p></Link>
   ))}
     </div>
   <div className='BlocPostHome'>
   <Link className='PosterMessage' to="/ajouter-post">Poster un message</Link>
   {postState.map(post => (
-     <BlocPostInfo key={post._id} post={post} url={url} token={token} like={like}  deleted={deleted}  />
+     <BlocPostInfo key={post._id} post={post} url={url} token={token} like={like}  deleted={deleted} role={role} />
   ))}
  
 </div> 

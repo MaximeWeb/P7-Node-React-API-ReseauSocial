@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faThumbsUp, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import '../styles/BlocPostInfo.css';
 
-function BlocPostInfo({ post, url, token, deleted, like }) {
+function BlocPostInfo({ post, url, token, deleted, like ,role}) {
   const profil = JSON.parse(localStorage.getItem("profil"));
   const [user, setUser] = useState({ pseudo: "" });
   const [likes, setLikes] = useState (post.likes.length);
@@ -55,12 +55,12 @@ function BlocPostInfo({ post, url, token, deleted, like }) {
   <span className="compteurlike">{likes}</span>
 </button>
       
-          {profil.userId === post.userId && (
+          {(profil.userId === post.userId || role === "admin") &&  (
             <Link className='updatepostbutton' title="Update Post" to={"/update-post/" + post._id}>
               <FontAwesomeIcon icon={faEdit} />
             </Link>
           )}
-          {profil.userId === post.userId && (
+          {(profil.userId === post.userId || role === "admin") && (
             <button className="deletepostbutton" title="Delete post" onClick={() => deleteById(post._id)}>
               <FontAwesomeIcon icon={faTrashAlt} />
             </button>

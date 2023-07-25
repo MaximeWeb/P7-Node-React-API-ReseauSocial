@@ -24,22 +24,34 @@ p {
 }
 
 .blocprofilimage {
-    display: flex;
-    flex-direction: column;
+    position:absolute;
+    left: 50%;
+margin-left:50px;
+   
 }
 
+.label-file {
+    color:#FD2D01;
+   font-size: 40px;
+   cursor: pointer;
+  
+}
+.input-file {
+    display: none;
+}
 .changeimage {
     cursor: pointer;
-    transform: scale(1);
-    transition: transform 400ms;
+    font-weight: bold;
+    
 }
 .changeimage:hover {
-    transform: scale(1.45);
+   color:black;
 }
-
 .imageprofil {
     width: 100px;
     height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
 .buttonannule {
@@ -119,3 +131,59 @@ p {
   .fontbold {
       font-weight: bold;
   } 
+
+
+  /* Responsiv TABLETTE */
+
+@media(min-width: 800px) and (max-width :1366px) {
+    .blocprofil {
+        margin-top: 80px;
+        margin-bottom:20px;
+        height: 380px;
+    }
+    .buttonannule {
+        position: relative;
+        top:30px;
+        left:30px
+    }
+    .buttonupdate {
+      
+        margin-top:0px;
+    }
+}
+
+@media(min-width: 500px) and (max-width :800px) {
+    .blocprofil {
+        margin-top: 80px;
+        margin-bottom:20px;
+        height: 380px;
+    }
+    .buttonannule {
+        position: relative;
+        top:30px;
+        left:30px
+    }
+    .buttonupdate {
+      
+        margin-top:0px;
+    }
+}
+
+/* Responsiv Mobile */
+
+@media(max-width :500px) {
+    .blocprofil {
+        width: 360px;
+    }
+
+    .buttonannule {
+        position: relative;
+        top:40px;
+        left:30px
+    }
+    .buttonupdate {
+      
+        margin-top:10px;
+    }
+    
+}

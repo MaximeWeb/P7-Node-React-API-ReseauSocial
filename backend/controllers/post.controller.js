@@ -1,3 +1,4 @@
+const { receiveMessageOnPort } = require('worker_threads');
 const PostModel = require('../models/post.model');
 const UserModel = require('../models/user.model');
 const ObjectId = require('mongoose').Types.ObjectId;
@@ -48,7 +49,7 @@ module.exports.createPost = (req, res, next) => {
 
     PostModel.findOne({ _id: req.params.id })
         .then(post => {
-            if (post.userId == req.auth.userId) {
+            if (post.userId == req.auth.userId || req.auth.roleUser === "admin" ) {
                 PostModel.updateOne({ _id: req.params.id }, {...PostObject, _id: req.params.id })
                     .then(() => res.status(200).json({ message: 'Post modifiée !' }))
                     .catch(error => res.status(400).json({ error }));
@@ -63,24 +64,63 @@ module.exports.createPost = (req, res, next) => {
     
    
 
-module.exports.deletePost = ( req, res) => {
-    PostModel.findOne({ _id: req.params.id })
-        .then(post => {
-            if (post.userId == req.auth.userId) {
-                const filename = post.picture.split('/images/')[1];
-                fs.unlink(`images/${filename}`, () => {
-                    PostModel.deleteOne({ _id: req.params.id })
-                        .then(() => { res.status(200).json({ message: 'Objet supprimé !' }) })
-                        .catch(error => res.status(401).json({ error }));
-                });
+module.exports.delet = ( req, res) => {
+    const postData = PostModel.findById( req.params.id )
+    console.log(postData)
+      /*  .then(post => {
+            const filename = post.picture.split('/images/')[1];
+            
+            if (post.userId === req.auth.userId || req.auth.roleUser === "admin" ) {
+              
+                if(post.picture === null) {
+                    post.destroy()
+                    .then(() => { res.status(200).json({ message: 'Objet supprimé !' }) })
+                    .catch(error => res.status(401).json({ error }));
+                } else {
+                    fs.unlink(`images/${filename}`, () => {
+                        post.destroy()
+                            .then(() => { res.status(200).json({ message: 'Objet supprimé !' }) })
+                            .catch(error => res.status(401).json({ error }));
+                    });
+                }
+               
             } else {
                 res.status(403).json({ message: 'acces refusé' })
             }
         })
         .catch(error => {
+           
             res.status(500).json({ error });
-        });
+        }); */
+
 };
+
+module.exports.deletePost = async (req, res) => {
+    const id = req.params.id;
+  
+  
+  
+    try {
+      const post = await PostModel.findById(id);
+      if (post.userId === req.auth.userId || req.auth.roleUser === "admin" ) {
+        if(post.picture === null) {
+            await post.deleteOne(); 
+        } else {
+            const filename = post.picture.split('/images/')[1];
+            fs.unlink(`images/${filename}`,  async () => {
+                await post.deleteOne(); 
+            })
+
+        }
+         res.status(200).json("Post supprimé");
+      } else {
+        res.status(403).json("Vous n'etes pas autorisé");
+      }
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  };
+  
 
 
 

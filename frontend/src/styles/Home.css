@@ -28,10 +28,9 @@ body {
     border-radius: 10px; 
     width: 200px;
     background-color: #FFD7D7;
-    margin-right:50px;
-    float: right;
-    margin-top:120px;
      padding-left: 5px;
+     position: fixed;
+     right: 10px;
 }
 
 .boxusers {
@@ -53,4 +52,76 @@ body {
      color:blue
 }
 
+/* Responsiv TABLETTE */
 
+@media(min-width: 800px) and (max-width :1366px) {
+   
+    body {
+        margin:0px;  
+        width: auto;
+        height: auto;
+    }
+    .BlocPostHome {
+        margin-top:50px;
+    }
+    .PosterMessage {
+        position: relative;
+        left:2%;
+        bottom:20px;
+    }
+
+    .blocamis {
+        width: 200px;
+         position: fixed;
+         right: 5%;
+         top:100px;
+    }
+}
+
+@media(min-width: 540px) and (max-width :800px) {
+    body {
+        margin:0px;  
+        width: auto;
+        height: auto;
+    }
+    .BlocPostHome {
+        margin-top:30px;
+    }
+    .PosterMessage {
+        position: relative;
+        left:2%;
+        top:0px;
+    }
+
+    .blocamis {
+        width: 200px;
+         position: fixed;
+         right: 20px;
+         top:100px;
+    }
+    
+}
+
+/* Responsiv Mobile */
+
+@media(max-width :540px) {
+    body {
+        margin:0px;  
+        width: auto;
+        height: auto;
+    }
+    .BlocPostHome {
+        margin-top:30px;
+    }
+    .PosterMessage {
+        position: relative;
+        left:5%;
+        top:2px;
+    }
+    
+    .blocamis {
+      display: none;
+    }
+    
+    
+}

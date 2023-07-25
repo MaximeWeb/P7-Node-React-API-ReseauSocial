@@ -7,7 +7,7 @@ import BlocProfil from '../components/BlocProfil'
 /*import axios from "axios";*/
 
 
- const Profil = ({url,token}) => {
+ const Profil = ({url,token,role}) => {
 
 return (
   <div>

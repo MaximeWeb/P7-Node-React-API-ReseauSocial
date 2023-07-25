@@ -101,6 +101,32 @@ body {
     transform: scale(1.30);
 }
 
+/* Responsiv TABLETTE */
 
+@media(min-width: 800px) and (max-width :1366px) {
+    .blocposthome {
+        width: 500px;
+        margin-bottom:30px;
+        margin-left:10px;
+    }
+}
+
+@media(min-width: 540px) and (max-width :800px) {
+    .blocposthome {
+        width: 360px;
+        margin-bottom:30px;
+        margin-left:10px;
+    }
+}
+
+/* Responsiv Mobile */
+
+@media(max-width :540px) {
+    .blocposthome {
+        width: 310px;
+        margin:auto;
+        margin-bottom:30px;
+    }
+}
 
 

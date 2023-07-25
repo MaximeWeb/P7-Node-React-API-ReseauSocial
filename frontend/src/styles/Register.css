@@ -104,3 +104,110 @@ h2 {
      font-size:20px;
  }
  
+
+/* Responsiv TABLETTE */
+
+@media(min-width: 800px) and (max-width :1366px) {
+    body {
+        margin-top: 40px;
+        margin-left:2%;
+        height: auto;
+      }
+      h1 {
+          font-size: 34px; 
+      }
+      h2 {
+          width: 320px;
+          font-size: 21px;
+          padding-right: 10px;
+      }
+      .boxregister {
+          margin:auto;
+      }
+      .Bloclogin input {
+          width: 400px;
+      }
+      .Bloclogin {
+          width: 450px;
+      }
+      .Blocsignup {
+          width: 450px;
+      }
+      .Blocsignup input {
+          width: 400px;
+      }
+       .switchlogin {
+     font-size: 13px;
+      }
+}
+
+@media(min-width: 500px) and (max-width :800px) {
+ body {
+        margin-top: 20px;
+        margin-left:4%;
+        height: auto;
+      }
+      h1 {
+          font-size: 30px; 
+      }
+      h2 {
+          width: 300px;
+          font-size: 20px;
+          padding-right: 10px;
+      }
+      .boxregister {
+          margin:auto;
+      }
+      .Bloclogin input {
+          width: 300px;
+      }
+      .Bloclogin {
+          width: 350px;
+      }
+      .Blocsignup {
+          width: 350px;
+      }
+      .Blocsignup input {
+          width: 300px;
+      }
+       .switchlogin {
+     font-size: 13px;
+      }
+}
+
+/* Responsiv Mobile */
+
+@media(max-width :500px) {
+    body {
+      height: 900px;
+    }
+    h1 {
+        font-size: 30px; 
+    }
+    h2 {
+        width: 300px;
+        font-size: 20px;
+        padding-right: 10px;
+    }
+    .boxregister {
+       margin: auto;
+       margin-left:2%;
+       flex-direction: column;
+    }
+    .Bloclogin input {
+        width: 300px;
+    }
+    
+    .Bloclogin {
+        width: 350px;
+    }
+    .Blocsignup {
+        width: 350px;
+    }
+    .Blocsignup input {
+        width: 300px;
+    }
+     .switchlogin {
+   font-size: 13px;
+    }
+}

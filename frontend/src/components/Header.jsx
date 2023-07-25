@@ -13,7 +13,7 @@ import '../styles/Header.css'
   const [connectState, setConnectState] = useAuthState()
    const logout =  () => {
    localStorage.removeItem('profil');
-   setConnectState({loggedIn: false, token: "" })
+   setConnectState({loggedIn: false, token: "", role:"" })
 
    };
    

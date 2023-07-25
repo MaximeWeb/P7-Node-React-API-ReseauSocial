@@ -10,7 +10,7 @@ import Swal from 'sweetalert2'
 import '../styles/AddPost.css'
 
 
-const AddPost = ({url,token}) => {
+const AddPost = ({url,token,role}) => {
 
   const navigate = useNavigate();
   
@@ -118,8 +118,8 @@ return   (
                 <div className="flexboximage">
                  <div className="boximage">
                     <p> Ajouter une image ?</p>
-                      <label htmlFor="file" title="Ajouter une image" className="label-file" ><FontAwesomeIcon icon={faImage} /></label>
-                        <input id="file" className="input-file" type="file" accept="image/png, image/jpg, image/jpeg"    onChange={newImage}/>
+                      <label htmlFor="file" title="Ajouter une image" className="label-filePost" ><FontAwesomeIcon icon={faImage} /></label>
+                        <input id="file" className="input-filePost" type="file" accept="image/png, image/jpg, image/jpeg"    onChange={newImage}/>
 
                  </div>
                 <img  className={(image) ? "newimage" : ""} alt="" src={image} /> 

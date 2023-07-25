@@ -5,7 +5,7 @@ import Header from '../components/Header'
 import { useParams } from 'react-router-dom';
 import '../styles/BlocUserInfo.css';
 
-const UserInfo = ({ url, token }) => {
+const UserInfo = ({ url, token, role }) => {
   const { id } = useParams(); // Récupère l'ID de l'utilisateur depuis les paramètres de l'URL
 
   const [user, setUser] = useState({ pseudo: "" });
