@@ -1,17 +1,15 @@
-const { receiveMessageOnPort } = require('worker_threads');
 const PostModel = require('../models/post.model');
-const UserModel = require('../models/user.model');
 const ObjectId = require('mongoose').Types.ObjectId;
 const fs = require('fs');
 
 module.exports.readPost = ( req, res) => {
+     const sort = { length: -1 };
  PostModel.find((err, docs) => {
     if (!err) res.send(docs);
     else console.log('Error to get data: ' + err);
- })
+ }).sort({_id: -1})
 };
   
-
 module.exports.readOnePost = (req, res) => {
     if (!ObjectId.isValid(req.params.id))
     return res.status(400).send('ID unknown : ' + req.params.id)
@@ -56,50 +54,10 @@ module.exports.createPost = (req, res, next) => {
             } else {
                 res.status(403).json({ message: 'acces refusé' })
             }
-
-
         })
-
 }; 
-    
-   
-
-module.exports.delet = ( req, res) => {
-    const postData = PostModel.findById( req.params.id )
-    console.log(postData)
-      /*  .then(post => {
-            const filename = post.picture.split('/images/')[1];
-            
-            if (post.userId === req.auth.userId || req.auth.roleUser === "admin" ) {
-              
-                if(post.picture === null) {
-                    post.destroy()
-                    .then(() => { res.status(200).json({ message: 'Objet supprimé !' }) })
-                    .catch(error => res.status(401).json({ error }));
-                } else {
-                    fs.unlink(`images/${filename}`, () => {
-                        post.destroy()
-                            .then(() => { res.status(200).json({ message: 'Objet supprimé !' }) })
-                            .catch(error => res.status(401).json({ error }));
-                    });
-                }
-               
-            } else {
-                res.status(403).json({ message: 'acces refusé' })
-            }
-        })
-        .catch(error => {
-           
-            res.status(500).json({ error });
-        }); */
-
-};
-
 module.exports.deletePost = async (req, res) => {
     const id = req.params.id;
-  
-  
-  
     try {
       const post = await PostModel.findById(id);
       if (post.userId === req.auth.userId || req.auth.roleUser === "admin" ) {
@@ -110,7 +68,6 @@ module.exports.deletePost = async (req, res) => {
             fs.unlink(`images/${filename}`,  async () => {
                 await post.deleteOne(); 
             })
-
         }
          res.status(200).json("Post supprimé");
       } else {
@@ -142,36 +99,4 @@ module.exports.likePost = async (req, res) => {
     }
   };
 
-
-
- module.exports.commentPost = ( req, res) => {
-  /*  if (!ObjectId.isValid(req.params.id))
-    return res.status(400).send("ID unknow : " + req.params.id);
-
-    try {
-        return PostModel.findByIdAndUpdate(
-            req.params.id,
-            {
-                $push: {
-                    comments: {
-                        commenterId: req.body.commenterId,
-                        commenterPseudo: req.body.commenterPseudo,
-                        text: req.body.text,
-                        timestamp: new Date().getTime()
-                    }
-                }
-            },
-        )
-    } catch (err) {
-        
-    } */
-};
-
-module.exports.editCommentPost = ( req, res) => {
-
-};
-
-module.exports.deleteCommentPost = ( req, res) => {
-
-};
 

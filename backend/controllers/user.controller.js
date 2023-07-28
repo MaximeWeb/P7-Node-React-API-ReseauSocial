@@ -7,7 +7,6 @@ module.exports.getAllUsers = async (req, res) => {
 };
 
 module.exports.userInfo = (req, res) => {
-    console.log(req.params);
     if (!ObjectID.isValid(req.params.id))
     return res.status(400).send('ID unknown : ' + req.params.id)
 
@@ -56,61 +55,3 @@ module.exports.deleteUser = async (req, res) => {
 };
 
 
-
-module.exports.follow = async (req, res) => {
-    if (!ObjectID.isValid(req.params.id) )
-    return res.status(400).json('ID unknown : ' + req.params.id)
-
-    try {
-        await UserModel.findByIdAndUpdate(
-            req.params.id,
-            { $addToSet: { following: req.body.idToFollow}},
-            { new: true, upsert: true },
-            (err, docs) => {
-               if (!err) res.status(201).json(docs);
-               if (err) return res.status(400).json(err);
-            }
-         );
-
-         await UserModel.findByIdAndUpdate(
-            req.body.idToFollow,
-            { $addToSet: { followers: req.params.id}},
-            { new: true, upsert: true },
-            (err, docs) => {
-              //  if (!err) res.status(201).json(docs);
-                if (err) return res.status(400).json(err);
-            }
-         )
-       
-    } catch (err) {
-        return res.status(500).json({ message : err });
-    }
-}
-
-module.exports.unfollow = async (req, res) => {
-    if (!ObjectID.isValid(req.params.id) )
-    return res.status(400).json('ID unknown : ' + req.params.id)
-    try {
-        await UserModel.findByIdAndUpdate(
-            req.params.id,
-            { $pull: { following: req.body.idToUnfollow}},
-            { new: true, upsert: true },
-            (err, docs) => {
-               if (!err) res.status(201).json(docs);
-               if (err) return res.status(400).json(err);
-            }
-         );
-
-         await UserModel.findByIdAndUpdate(
-            req.body.idToUnfollow,
-            { $pull: { followers: req.params.id}},
-            { new: true, upsert: true },
-            (err, docs) => {
-              //  if (!err) res.status(201).json(docs);
-                if (err) return res.status(400).json(err);
-            }
-         )
-    } catch (err) {
-        return res.status(500).json({ message : err });
-    }
-}

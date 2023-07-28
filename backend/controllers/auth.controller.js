@@ -15,19 +15,15 @@ exports.signUp = (req, res, next) => {
                 pseudo: req.body.pseudo,
                 email: req.body.email,
                 password: hash
-                
             });
-         
               user.save()
                // .then(() => res.status(201).json(user))
                 .then(() => res.status(200).json({
                     userId: user._id,
                     role: user.role,
                     token: jwt.sign({ userId: user._id,role: user.role },
-                        process.env.SECRET, { expiresIn: '24h' }
-                    
-                    ),
-                   
+                        process.env.SECRET, { expiresIn: '24h' } 
+                    ), 
                 })
                )
 
@@ -67,10 +63,7 @@ exports.signIn = (req, res, next) => {
         .catch(error => res.status(500).json({ error }));
 };
 
-exports.logout = (req, res, next) => {
 
-  
-};
 
 
 

@@ -33,18 +33,6 @@ bio : {
     max: 1024,
     
 },
-followers : {
-    type : [String]
-    
-},
-
-following : {
-    type : [String]
-},
-
-likes : {
-    type : [String]
-},
 
 role : {
     type: String,

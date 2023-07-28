@@ -74,11 +74,9 @@ function BlocUserInfo({ url, token }) {
 
     reader.readAsDataURL(file);
   }
-
   const toggleEditBio = () => {
     setEditingBio(!editingBio);
   };
-
   const handleBioChange = (e) => {
     setNewBio(e.target.value);
   };

@@ -1,6 +1,5 @@
 import React, { useEffect,useState } from 'react'
 import Router from './routes/Router'
-import axios from "axios";
 import { useAuthState } from './atoms'
 
 

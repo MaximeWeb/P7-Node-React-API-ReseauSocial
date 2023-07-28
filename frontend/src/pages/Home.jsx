@@ -58,7 +58,6 @@ import '../styles/Home.css'
     }
   };
 
-
  useEffect(() => {
   
     async function fetchData() {
@@ -69,8 +68,7 @@ import '../styles/Home.css'
       .then((data) => setPostState(data.data))
     
     }
-
-
+    
     fetchData()
 
     async function fetchUser() {

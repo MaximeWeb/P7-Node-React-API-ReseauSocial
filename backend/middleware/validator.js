@@ -21,21 +21,8 @@ const userValidationRules = () => {
             pointsForContainingNumber: 10,
             pointsForContainingSymbol: 10,
         }).withMessage("Le mot de passe doit inclure un caractère minuscule, un caractère majuscule, un chiffre et un caractère spécial !"),
-
-       
     ]
 }
-
-// const signUpErrors = (err) => {
-  //  const errors = {pseudo :'', email:'', password:''}
-
-   // if (err.message.includes('pseudo'))
-    // errors.pseudo = "pseudo incorrect ou deja prit";
-
-   //  return errors
-//}
-
-
 const validate = (req, res, next) => {
     const errors = validationResult(req)
     if (errors.isEmpty()) {
@@ -50,13 +37,8 @@ const validate = (req, res, next) => {
     return res.status(422).json({
         errors: extractedErrors,
     })
-
 }
-
-
-
 module.exports = {
     userValidationRules,
     validate,
-    
 }
