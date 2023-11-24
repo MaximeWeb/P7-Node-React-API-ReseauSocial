@@ -8,8 +8,8 @@
 ## Install
 
 ```sh
-Faire cd frontend et un npm start 
-Faire cd backend et un nodemon server.js
+cd frontend npm start 
+cd backend nodemon server.js
 ```
 
 ## Author
