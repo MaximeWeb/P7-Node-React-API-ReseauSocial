@@ -9,6 +9,8 @@
 
 ```sh
 cd frontend npm start 
+```
+```sh
 cd backend nodemon server.js
 ```
 
